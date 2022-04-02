@@ -11,6 +11,8 @@ class AlbumCollectionViewController: UICollectionViewController {
 
     // Satish also implement Network Monitor for No Internet
     
+    // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
+    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
