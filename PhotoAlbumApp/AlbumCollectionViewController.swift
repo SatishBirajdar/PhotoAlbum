@@ -37,6 +37,8 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
+
+    
     //UICollectionViewDelegateFlowLayout methods
      func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
      {
@@ -70,16 +72,18 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         return cell
     }
     
-//     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath as IndexPath) as UICollectionViewCell
-//
-//         cell.backgroundColor = self.randomColor()
-//
-//
-//         return cell
-//     }
-     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        let noOfCellsInRow = 2   //number of column you want
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+        return CGSize(width: size, height: size)
+    }
+    
      // custom function to generate a random UIColor
      func randomColor() -> UIColor{
          let red = CGFloat(drand48())
