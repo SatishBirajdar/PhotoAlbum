@@ -169,6 +169,10 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         }
         
         vm.getPhotoAlbums(onSuccess: { (model) in
+            print(model)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }, onError: {(model) in})
     }
 
@@ -227,6 +231,7 @@ extension AlbumCollectionViewModel {
                     self.isLoading = false
                 self.photoAlbums = model
                 print(model)
+                onSuccess(model)
             }, onError: {(model) in
             onError(model)
         })
