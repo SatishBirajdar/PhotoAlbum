@@ -50,18 +50,19 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
      }
      
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vm.photoAlbums.count
+        return vm.uniqueKeys.count
      }
      
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
-        let url = URL(string: self.vm.photoAlbums[indexPath.row].thumbnailURL)
+        
+        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
+        
+        guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
+        
+        let url = URL(string: firstPhotoOfAlbum.thumbnailURL)
         if let url = url {
             cell.thumnailImageView.kf.setImage(with: url)
-            
-//            cell.thumnailImageView.load(url: url)
-//            cell.thumnailImageView.translatesAutoresizingMaskIntoConstraints = false
-//            cell.thumnailImageView.contentMode = .scaleAspectFill
         }
         
         return cell
@@ -152,6 +153,10 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
 class AlbumCollectionViewModel {
     var photoAlbumService: PhotoAlbumServiceClient
     
+    var groupByUniqueAlbumId : [Int:[PhotoAlbum]] = [:]
+    var uniqueKeys : [Int] = []
+    
+    
     var isLoading: Bool = false {
         didSet {
             self.updateLoadingStatus?()
@@ -194,15 +199,17 @@ extension AlbumCollectionViewModel {
                 self.photoAlbums = model
                 print(model)
                 
-//                let groupByAlbumId = self.photoAlbums.filter{ _ in $0.albumID }
-                
-                let groupByAlbumId = self.photoAlbums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
+                self.groupByUniqueAlbumId = self.photoAlbums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
                     var res = res
                     res[album.albumID] = (res[album.albumID] ?? []) + [album]
                     return res
                 }
                 
-                print(groupByAlbumId)
+                print(self.groupByUniqueAlbumId)
+                
+                for (key, value) in self.groupByUniqueAlbumId {
+                    self.uniqueKeys.append(key)
+                }
                 
                 self.didFinishFetch?()
                 self.isLoading = false
