@@ -67,14 +67,21 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let noOfCellsInRow = 2   //number of column you want
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let totalSpace = flowLayout.sectionInset.left
-            + flowLayout.sectionInset.right
-            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-
-        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let noOfCellsInRow = 2   //number of column you want
+//        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+//        let totalSpace = flowLayout.sectionInset.left
+//            + flowLayout.sectionInset.right
+//            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+//
+//        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+//        return CGSize(width: size, height: size)
+//    }
+    
+    func collectionView(_ collectionView1: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
         return CGSize(width: size, height: size)
     }
     
@@ -186,6 +193,17 @@ extension AlbumCollectionViewModel {
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
                 self.photoAlbums = model
                 print(model)
+                
+//                let groupByAlbumId = self.photoAlbums.filter{ _ in $0.albumID }
+                
+                let groupByAlbumId = self.photoAlbums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
+                    var res = res
+                    res[album.albumID] = (res[album.albumID] ?? []) + [album]
+                    return res
+                }
+                
+                print(groupByAlbumId)
+                
                 self.didFinishFetch?()
                 self.isLoading = false
                 onSuccess(model)
