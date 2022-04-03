@@ -7,15 +7,21 @@
 
 import UIKit
 
-class AlbumCollectionViewController: UICollectionViewController {
+class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+    
 
     // Satish also implement Network Monitor for No Internet
     
     // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
     
+    let reuseIdentifier = "CellIdentifer";
+    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
+    
+    @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +31,63 @@ class AlbumCollectionViewController: UICollectionViewController {
         
 
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //UICollectionViewDelegateFlowLayout methods
+     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
+     {
+         
+         return 4;
+     }
+     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
+     {
+         
+         return 1;
+     }
+     
+     
+     //UICollectionViewDatasource methods
+     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+         
+         return 1
+     }
+     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         
+         return 100
+     }
+     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as UICollectionViewCell
+    
+        cell.backgroundColor = self.randomColor()
+        
+        
+        return cell
+    }
+    
+//     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath as IndexPath) as UICollectionViewCell
+//
+//         cell.backgroundColor = self.randomColor()
+//
+//
+//         return cell
+//     }
+     
+
+     // custom function to generate a random UIColor
+     func randomColor() -> UIColor{
+         let red = CGFloat(drand48())
+         let green = CGFloat(drand48())
+         let blue = CGFloat(drand48())
+         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+     }
+    
     
     func showAlert( _ title : String, _ message : String) {
         
