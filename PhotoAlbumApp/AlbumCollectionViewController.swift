@@ -87,6 +87,17 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         return CGSize(width: size, height: size)
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+             //Do your logic here
+        
+        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
+        
+        print("Satish clicked \(self.vm.uniqueKeys[indexPath.row])")
+
+    }
+    
+    
     func showAlert( _ title : String, _ message : String) {
         
 //        var message = message
