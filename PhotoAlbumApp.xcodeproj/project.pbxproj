@@ -22,6 +22,8 @@
 		E3C0233027F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0232E27F83E4F008CBCFA /* PhotoAlbumService.swift */; };
 		E3C0233227F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */; };
 		E3C0233327F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */; };
+		E3C0233527F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */; };
+		E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,7 @@
 		E3C0232B27F83A19008CBCFA /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		E3C0232E27F83E4F008CBCFA /* PhotoAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumService.swift; sourceTree = "<group>"; };
 		E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAPI.swift; sourceTree = "<group>"; };
+		E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,7 @@
 				E3C022FB27F83835008CBCFA /* AppDelegate.swift */,
 				E3C022FD27F83835008CBCFA /* SceneDelegate.swift */,
 				E3C022FF27F83835008CBCFA /* AlbumCollectionViewController.swift */,
+				E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */,
 				E3C0232E27F83E4F008CBCFA /* PhotoAlbumService.swift */,
 				E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */,
 				E3C0230127F83835008CBCFA /* Main.storyboard */,
@@ -276,6 +280,7 @@
 				E3C0232F27F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */,
 				E3C0232C27F83A19008CBCFA /* PhotoAlbum.swift in Sources */,
 				E3C0233227F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */,
+				E3C0233527F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C0231327F83839008CBCFA /* PhotoAlbumAppTests.swift in Sources */,
+				E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */,
 				E3C0232D27F83A19008CBCFA /* PhotoAlbum.swift in Sources */,
 				E3C0233027F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */,
 				E3C0233327F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */,

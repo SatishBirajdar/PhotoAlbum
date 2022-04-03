@@ -15,7 +15,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
     
-    let reuseIdentifier = "CellIdentifer";
+    let reuseIdentifier = "PhotoAlbumCellIdentifer";
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
@@ -60,14 +60,23 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
      
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          
-         return 100
+        return vm.photoAlbums.count
      }
      
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
     
-        cell.backgroundColor = self.randomColor()
+//        cell.backgroundColor = self.randomColor()
         
+//        print("first \(vm.photoAlbums[1].thumbnailURL)")
+        
+        if self.vm.photoAlbums.count > 0 {
+            let url = URL(string: self.vm.photoAlbums[indexPath.row].thumbnailURL)
+        
+            if let url = url {
+                cell.thumnailImageView.load(url: url)
+            }
+        }
         
         return cell
     }
@@ -186,7 +195,9 @@ class AlbumCollectionViewModel {
         }
     }
     
-//    private(set) var runSheetResponseModel: DigitalRunSheetModel? {
+    lazy var photoAlbums: PhotoAlbums = []
+    
+//    private(set) var photoAlbums: PhotoAlbums? {
 //        get {
 //            digitalRunsheetService.latestRunSheetResponseModel
 //        }
@@ -209,11 +220,12 @@ class AlbumCollectionViewModel {
 
 
 extension AlbumCollectionViewModel {
-    func getPhotoAlbums(onSuccess : @escaping (_ : Dictionary<String, Any>) -> Void, onError : @escaping (_ : NSError) -> Void){
+    func getPhotoAlbums(onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : NSError) -> Void){
 //        if ACVHelper.isInternetAvailable() {
             self.isLoading = true
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
                     self.isLoading = false
+                self.photoAlbums = model
                 print(model)
             }, onError: {(model) in
             onError(model)
@@ -223,4 +235,18 @@ extension AlbumCollectionViewModel {
     
     
 
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }
