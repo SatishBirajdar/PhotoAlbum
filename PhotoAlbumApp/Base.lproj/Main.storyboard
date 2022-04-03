@@ -94,6 +94,14 @@
                                             <outlet property="thumnailImageView" destination="dJX-z7-Ffy" id="7WW-FJ-bpl"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ilg-Ng-PgY">
+                                        <rect key="frame" x="199" y="0.0" width="175" height="154"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VOD-ia-HoD">
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="154"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="LRF-Se-4bL" id="Nlp-Ax-QNa"/>

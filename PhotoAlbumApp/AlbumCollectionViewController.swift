@@ -73,15 +73,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         return CGSize(width: size, height: size)
     }
     
-     // custom function to generate a random UIColor
-     func randomColor() -> UIColor{
-         let red = CGFloat(drand48())
-         let green = CGFloat(drand48())
-         let blue = CGFloat(drand48())
-         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
-     }
-    
-    
     func showAlert( _ title : String, _ message : String) {
         
 //        var message = message
@@ -188,10 +179,10 @@ extension AlbumCollectionViewModel {
 //        if ACVHelper.isInternetAvailable() {
             self.isLoading = true
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
-                    self.isLoading = false
                 self.photoAlbums = model
                 print(model)
                 self.didFinishFetch?()
+                self.isLoading = false
                 onSuccess(model)
             }, onError: {(model) in
             onError(model)
