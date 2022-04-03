@@ -91,9 +91,14 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
              //Do your logic here
         
-        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
+        let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
+        
+        
+        vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]] ?? []
         
         print("Satish clicked \(self.vm.uniqueKeys[indexPath.row])")
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
 
     }
     
