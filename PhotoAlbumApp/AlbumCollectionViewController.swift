@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -56,7 +57,11 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
         let url = URL(string: self.vm.photoAlbums[indexPath.row].thumbnailURL)
         if let url = url {
-            cell.thumnailImageView.load(url: url)
+            cell.thumnailImageView.kf.setImage(with: url)
+            
+//            cell.thumnailImageView.load(url: url)
+//            cell.thumnailImageView.translatesAutoresizingMaskIntoConstraints = false
+//            cell.thumnailImageView.contentMode = .scaleAspectFill
         }
         
         return cell

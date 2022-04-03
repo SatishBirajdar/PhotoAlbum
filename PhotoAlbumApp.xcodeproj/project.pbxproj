@@ -26,6 +26,7 @@
 		E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */; };
 		E3C0233827F9F4A9008CBCFA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233727F9F4A9008CBCFA /* Extensions.swift */; };
 		E3C0233927F9F4A9008CBCFA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233727F9F4A9008CBCFA /* Extensions.swift */; };
+		E3C0233C27FA022D008CBCFA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E3C0233B27FA022D008CBCFA /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C0233C27FA022D008CBCFA /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +96,6 @@
 		E3C022EF27F83835008CBCFA = {
 			isa = PBXGroup;
 			children = (
-				E3C0233727F9F4A9008CBCFA /* Extensions.swift */,
 				E3C022FA27F83835008CBCFA /* PhotoAlbumApp */,
 				E3C0231127F83839008CBCFA /* PhotoAlbumAppTests */,
 				E3C0231B27F83839008CBCFA /* PhotoAlbumAppUITests */,
@@ -117,12 +118,13 @@
 			children = (
 				E3C022FB27F83835008CBCFA /* AppDelegate.swift */,
 				E3C022FD27F83835008CBCFA /* SceneDelegate.swift */,
+				E3C0230127F83835008CBCFA /* Main.storyboard */,
 				E3C022FF27F83835008CBCFA /* AlbumCollectionViewController.swift */,
 				E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */,
 				E3C0232E27F83E4F008CBCFA /* PhotoAlbumService.swift */,
 				E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */,
-				E3C0230127F83835008CBCFA /* Main.storyboard */,
 				E3C0232B27F83A19008CBCFA /* PhotoAlbum.swift */,
+				E3C0233727F9F4A9008CBCFA /* Extensions.swift */,
 				E3C0230427F83838008CBCFA /* Assets.xcassets */,
 				E3C0230627F83838008CBCFA /* LaunchScreen.storyboard */,
 				E3C0230927F83838008CBCFA /* Info.plist */,
@@ -163,6 +165,9 @@
 			dependencies = (
 			);
 			name = PhotoAlbumApp;
+			packageProductDependencies = (
+				E3C0233B27FA022D008CBCFA /* Kingfisher */,
+			);
 			productName = PhotoAlbumApp;
 			productReference = E3C022F827F83835008CBCFA /* PhotoAlbumApp.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +240,9 @@
 				Base,
 			);
 			mainGroup = E3C022EF27F83835008CBCFA;
+			packageReferences = (
+				E3C0233A27FA022D008CBCFA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = E3C022F927F83835008CBCFA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -632,6 +640,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E3C0233A27FA022D008CBCFA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E3C0233B27FA022D008CBCFA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3C0233A27FA022D008CBCFA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E3C022F027F83835008CBCFA /* Project object */;
 }

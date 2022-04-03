@@ -10,4 +10,6 @@ import UIKit
 class PhotoAlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumnailImageView: UIImageView!
     
+    
+    
 }
