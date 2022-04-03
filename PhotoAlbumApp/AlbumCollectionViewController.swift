@@ -9,8 +9,6 @@ import UIKit
 
 class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    
-
     // Satish also implement Network Monitor for No Internet
     
     // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
@@ -18,18 +16,15 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     let reuseIdentifier = "PhotoAlbumCellIdentifer";
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var collectionView: UICollectionView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
-    
-    @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         self.attemptToFetchViewData()
-        
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,52 +32,37 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
-
-    
     //UICollectionViewDelegateFlowLayout methods
-     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
      {
-         
          return 4;
      }
-     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
      {
-         
          return 1;
      }
      
-     
      //UICollectionViewDatasource methods
      func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-         
          return 1
      }
      
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         
         return vm.photoAlbums.count
      }
      
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
-    
-//        cell.backgroundColor = self.randomColor()
-        
-//        print("first \(vm.photoAlbums[1].thumbnailURL)")
-        
-        if self.vm.photoAlbums.count > 0 {
-            let url = URL(string: self.vm.photoAlbums[indexPath.row].thumbnailURL)
-        
-            if let url = url {
-                cell.thumnailImageView.load(url: url)
-            }
+        let url = URL(string: self.vm.photoAlbums[indexPath.row].thumbnailURL)
+        if let url = url {
+            cell.thumnailImageView.load(url: url)
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let noOfCellsInRow = 2   //number of column you want
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let totalSpace = flowLayout.sectionInset.left
@@ -104,7 +84,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     func showAlert( _ title : String, _ message : String) {
         
-        var message = message
+//        var message = message
         
 //        if message.isEmpty {
 //            if(!ACVHelper.isInternetAvailable()) {
@@ -175,15 +155,9 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
             }
         }, onError: {(model) in})
     }
-
-
 }
 
-
 class AlbumCollectionViewModel {
-
-//    lazy var digitalRunsheetService: DigitalRunsheetService = DigitalRunsheetService.shared
-    
     var photoAlbumService: PhotoAlbumServiceClient
     
     var isLoading: Bool = false {
@@ -218,10 +192,7 @@ class AlbumCollectionViewModel {
     init(photoAlbumService: PhotoAlbumServiceClient = PhotoAlbumService.shared){
         self.photoAlbumService = photoAlbumService
     }
-
-
 }
-
 
 extension AlbumCollectionViewModel {
     func getPhotoAlbums(onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : NSError) -> Void){
@@ -235,23 +206,5 @@ extension AlbumCollectionViewModel {
             }, onError: {(model) in
             onError(model)
         })
-                                                  
-    }
-    
-    
-
-}
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
 }

@@ -24,6 +24,8 @@
 		E3C0233327F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */; };
 		E3C0233527F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */; };
 		E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */; };
+		E3C0233827F9F4A9008CBCFA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233727F9F4A9008CBCFA /* Extensions.swift */; };
+		E3C0233927F9F4A9008CBCFA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0233727F9F4A9008CBCFA /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,7 @@
 		E3C0232E27F83E4F008CBCFA /* PhotoAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumService.swift; sourceTree = "<group>"; };
 		E3C0233127F8659F008CBCFA /* PhotoAlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAPI.swift; sourceTree = "<group>"; };
 		E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		E3C0233727F9F4A9008CBCFA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,7 @@
 		E3C022EF27F83835008CBCFA = {
 			isa = PBXGroup;
 			children = (
+				E3C0233727F9F4A9008CBCFA /* Extensions.swift */,
 				E3C022FA27F83835008CBCFA /* PhotoAlbumApp */,
 				E3C0231127F83839008CBCFA /* PhotoAlbumAppTests */,
 				E3C0231B27F83839008CBCFA /* PhotoAlbumAppUITests */,
@@ -277,6 +281,7 @@
 				E3C0230027F83835008CBCFA /* AlbumCollectionViewController.swift in Sources */,
 				E3C022FC27F83835008CBCFA /* AppDelegate.swift in Sources */,
 				E3C022FE27F83835008CBCFA /* SceneDelegate.swift in Sources */,
+				E3C0233827F9F4A9008CBCFA /* Extensions.swift in Sources */,
 				E3C0232F27F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */,
 				E3C0232C27F83A19008CBCFA /* PhotoAlbum.swift in Sources */,
 				E3C0233227F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */,
@@ -289,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C0231327F83839008CBCFA /* PhotoAlbumAppTests.swift in Sources */,
+				E3C0233927F9F4A9008CBCFA /* Extensions.swift in Sources */,
 				E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */,
 				E3C0232D27F83A19008CBCFA /* PhotoAlbum.swift in Sources */,
 				E3C0233027F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */,
