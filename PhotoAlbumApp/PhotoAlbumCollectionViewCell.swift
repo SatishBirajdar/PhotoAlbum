@@ -9,7 +9,5 @@ import UIKit
 
 class PhotoAlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumnailImageView: UIImageView!
-    
-    
-    
+    @IBOutlet weak var albumIdLabel: UILabel!
 }

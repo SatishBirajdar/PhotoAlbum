@@ -71,27 +71,37 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoAlbumCellIdentifer" id="gha-zE-UD8" customClass="PhotoAlbumCollectionViewCell" customModule="PhotoAlbumApp" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="10" width="150" height="150"/>
+                                        <rect key="frame" x="10" y="10" width="150" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BHo-jH-1jI">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="191"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dJX-z7-Ffy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="160"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-88-9Sx">
+                                                    <rect key="frame" x="5" y="165" width="140" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="dJX-z7-Ffy" secondAttribute="bottom" id="Kau-CX-Z1F"/>
+                                                <constraint firstItem="Drl-88-9Sx" firstAttribute="leading" secondItem="BHo-jH-1jI" secondAttribute="leading" constant="5" id="Jvu-fh-Dpt"/>
                                                 <constraint firstItem="dJX-z7-Ffy" firstAttribute="leading" secondItem="BHo-jH-1jI" secondAttribute="leading" id="LfW-eq-D6p"/>
                                                 <constraint firstItem="dJX-z7-Ffy" firstAttribute="top" secondItem="BHo-jH-1jI" secondAttribute="top" id="M2V-IX-777"/>
+                                                <constraint firstItem="Drl-88-9Sx" firstAttribute="top" secondItem="dJX-z7-Ffy" secondAttribute="bottom" constant="5" id="TpK-Z9-sLj"/>
+                                                <constraint firstAttribute="trailing" secondItem="Drl-88-9Sx" secondAttribute="trailing" constant="5" id="UNh-i7-qqb"/>
+                                                <constraint firstAttribute="bottom" secondItem="Drl-88-9Sx" secondAttribute="bottom" constant="5" id="VRy-Xe-Tff"/>
                                                 <constraint firstAttribute="trailing" secondItem="dJX-z7-Ffy" secondAttribute="trailing" id="wev-ob-8Gq"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="150" height="150"/>
+                                        <size key="customSize" width="150" height="191"/>
                                         <connections>
+                                            <outlet property="albumIdLabel" destination="Drl-88-9Sx" id="TUI-Xc-WCL"/>
                                             <outlet property="thumnailImageView" destination="dJX-z7-Ffy" id="7WW-FJ-bpl"/>
                                         </connections>
                                     </collectionViewCell>

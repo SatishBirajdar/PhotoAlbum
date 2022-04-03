@@ -64,6 +64,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         if let url = url {
             cell.thumnailImageView.kf.setImage(with: url)
         }
+        cell.albumIdLabel.text = String(self.vm.uniqueKeys[indexPath.row])
         
         return cell
     }
@@ -210,6 +211,7 @@ extension AlbumCollectionViewModel {
                 for (key, value) in self.groupByUniqueAlbumId {
                     self.uniqueKeys.append(key)
                 }
+                self.uniqueKeys.sort()
                 
                 self.didFinishFetch?()
                 self.isLoading = false
