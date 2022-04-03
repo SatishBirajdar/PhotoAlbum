@@ -142,8 +142,8 @@
             filePath = "PhotoAlbumApp/AlbumCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "attemptToFetchViewData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "PhotoAlbumApp/AlbumCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "getPhotoAlbums(onSuccess:onError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "PhotoAlbumApp/AlbumCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "getPhotoAlbums(onSuccess:onError:)"
             landmarkType = "7">
          </BreakpointContent>

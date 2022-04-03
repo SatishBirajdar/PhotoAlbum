@@ -136,23 +136,12 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         vm.didFinishFetch = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-//                self.dealershipOptions = self.vm.dealershipIdOptions ?? []
-//                self.locationOptions = self.vm.addressOptions ?? []
-//                self.isMultiDealer = self.dealershipOptions.count > 1
-//
-//                if (!self.isMultiDealer && self.dealershipOptions.count == 1) {
-//                    self.selectedDealershipId = self.dealershipOptions[0].id.getIntValue
-//                }
-//
-//                self.refreshView()
+                self.collectionView.reloadData()
             }
         }
         
         vm.getPhotoAlbums(onSuccess: { (model) in
             print(model)
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
         }, onError: {(model) in})
     }
 }
@@ -202,6 +191,7 @@ extension AlbumCollectionViewModel {
                     self.isLoading = false
                 self.photoAlbums = model
                 print(model)
+                self.didFinishFetch?()
                 onSuccess(model)
             }, onError: {(model) in
             onError(model)
