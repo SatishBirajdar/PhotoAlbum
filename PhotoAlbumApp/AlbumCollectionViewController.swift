@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     // Satish also implement Network Monitor for No Internet
     
@@ -20,6 +20,14 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet var collectionView: UICollectionView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
+    
+    let flowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        return layout
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,26 +74,18 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         }
         cell.albumIdLabel.text = "Album \(String(self.vm.uniqueKeys[indexPath.row]))"
         
+        cell.layoutIfNeeded()
+        
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let noOfCellsInRow = 2   //number of column you want
-//        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//        let totalSpace = flowLayout.sectionInset.left
-//            + flowLayout.sectionInset.right
-//            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-//
-//        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+    
+//    func collectionView(_ collectionView1: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+//        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+//        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
 //        return CGSize(width: size, height: size)
 //    }
-    
-    func collectionView(_ collectionView1: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
-        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
-        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
-        return CGSize(width: size, height: size)
-    }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -236,5 +236,20 @@ extension AlbumCollectionViewModel {
             }, onError: {(model) in
             onError(model)
         })
+    }
+}
+
+
+extension AlbumCollectionViewController: UICollectionViewDelegateFlowLayout {
+
+    // MARK: - UICollectionViewDelegateFlowLayout
+
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width
+        let numberOfItemsPerRow: CGFloat = 2
+        let spacing: CGFloat = flowLayout.minimumInteritemSpacing
+        let availableWidth = width - spacing * (numberOfItemsPerRow + 1)
+        let itemDimension = floor(availableWidth / numberOfItemsPerRow)
+        return CGSize(width: itemDimension, height: itemDimension)
     }
 }
