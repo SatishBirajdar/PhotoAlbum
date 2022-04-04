@@ -65,7 +65,7 @@ extension AlbumCollectionViewModel {
             checkForInternet()
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
                 self.albums = model
-                self.albumIds = self.groupByAlbumId()
+                self.albumIds = self.groupByAlbumIds(albums: self.albums)
                 self.didFinishFetch?()
                 self.isLoading = false
                 onSuccess(model)
@@ -74,9 +74,9 @@ extension AlbumCollectionViewModel {
         })
     }
     
-    func groupByAlbumId() -> [Int] {
+    func groupByAlbumIds(albums: PhotoAlbums) -> [Int] {
         var tempAlbumIds: [Int] = []
-        self.groupByUniqueAlbumId = self.albums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
+        self.groupByUniqueAlbumId = albums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
             var res = res
             res[album.albumID] = (res[album.albumID] ?? []) + [album]
             return res

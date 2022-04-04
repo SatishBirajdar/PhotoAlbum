@@ -32,5 +32,17 @@ class AlbumCollectionViewModelTest: XCTestCase {
         // Then
         XCTAssert(mockClient.getPhotoAlbumsCallCount == 1)
     }
+    
+    func test_getPhotoAlbums(){
+        // Given
+        let mockClient = PhotoAlbumServiceMock()
+        let vm = AlbumCollectionViewModel(photoAlbumService: mockClient)
+        
+        // When
+        let albums = [PhotoAlbum(albumID: 1, id: 1, title: "accusamus beatae ad facilis cum similique qui sunt", url: "https://via.placeholder.com/600/92c952", thumbnailURL: "https://via.placeholder.com/150/92c952"), PhotoAlbum(albumID: 1, id: 2, title: "reprehenderit est deserunt velit ipsam", url: "https://via.placeholder.com/600/771796", thumbnailURL:  "https://via.placeholder.com/150/771796"), PhotoAlbum(albumID: 3, id: 3, title: "officia porro iure quia iusto qui ipsa ut modi", url: "https://via.placeholder.com/600/24f355", thumbnailURL: "https://via.placeholder.com/150/24f355"), PhotoAlbum(albumID: 2, id: 4, title: "officia porro iure quia iusto qui ipsa ut modi", url: "https://via.placeholder.com/600/24f355", thumbnailURL: "https://via.placeholder.com/150/24f355")  ]
+        
+        // Then
+        XCTAssert(vm.groupByAlbumIds(albums: albums) == [1, 2, 3])
+    }
 
 }
