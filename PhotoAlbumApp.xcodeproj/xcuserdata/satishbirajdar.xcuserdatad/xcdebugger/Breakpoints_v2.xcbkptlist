@@ -46,8 +46,8 @@
             filePath = "PhotoAlbumApp/AlbumCollectionView/AlbumCollectionViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "groupByAlbumIds(albums:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,10 +62,10 @@
             filePath = "PhotoAlbumApp/AlbumCollectionView/AlbumCollectionViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "groupByAlbumIds(albums:)"
-            landmarkType = "7">
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "AlbumCollectionViewModel"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,8 +78,8 @@
             filePath = "PhotoAlbumApp/AlbumCollectionView/AlbumCollectionViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "getPhotoAlbums(onSuccess:onError:)"
             landmarkType = "7">
          </BreakpointContent>
