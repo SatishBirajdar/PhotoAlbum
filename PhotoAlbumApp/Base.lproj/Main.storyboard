@@ -116,16 +116,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" systemColor="systemPinkColor"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-Vu-Uk9" userLabel="ErrorView" customClass="ErrorView" customModule="PhotoAlbumApp" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-Vu-Uk9" userLabel="ErrorView" customClass="ErrorView" customModule="PhotoAlbumApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="108" width="374" height="754"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkQ-RW-qwF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkQ-RW-qwF">
                                         <rect key="frame" x="10" y="307.5" width="354" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fk-14-MqH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fk-14-MqH">
                                         <rect key="frame" x="10" y="366.5" width="354" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -165,7 +165,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Album" id="byJ-Er-499"/>
                     <connections>
-                        <outlet property="collectionView" destination="scV-bf-YPU" id="9C2-7Z-AGS"/>
+                        <outlet property="albumCollectionView" destination="scV-bf-YPU" id="9C2-7Z-AGS"/>
                         <outlet property="errorView" destination="QpB-Vu-Uk9" id="QJ0-36-0BZ"/>
                         <outlet property="loadingIndicator" destination="iuv-v1-sxh" id="DoA-VD-SE5"/>
                         <segue destination="LBr-S5-Izz" kind="show" id="bbc-kp-b1n"/>
@@ -250,17 +250,11 @@
                                     <outlet property="delegate" destination="LBr-S5-Izz" id="k5Y-77-VYF"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="ZkC-eX-G1A">
-                                <rect key="frame" x="20" y="86" width="374" height="723"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" systemColor="systemPinkColor"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MRq-Sp-8Hw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tuS-Uv-jPb" firstAttribute="leading" secondItem="MRq-Sp-8Hw" secondAttribute="leading" constant="20" id="24q-ch-zXP"/>
-                            <constraint firstItem="ZkC-eX-G1A" firstAttribute="centerX" secondItem="tuS-Uv-jPb" secondAttribute="centerX" id="6rI-vm-TYF"/>
                             <constraint firstItem="MRq-Sp-8Hw" firstAttribute="trailing" secondItem="tuS-Uv-jPb" secondAttribute="trailing" constant="20" id="N7w-Wl-lrd"/>
                             <constraint firstItem="tuS-Uv-jPb" firstAttribute="top" secondItem="MRq-Sp-8Hw" secondAttribute="top" constant="20" id="ZVo-rq-Sam"/>
                             <constraint firstItem="MRq-Sp-8Hw" firstAttribute="bottom" secondItem="tuS-Uv-jPb" secondAttribute="bottom" id="wnC-es-0J5"/>
@@ -268,8 +262,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="2oa-AP-VC5"/>
                     <connections>
-                        <outlet property="collectionView" destination="tuS-Uv-jPb" id="aJg-Si-BcB"/>
-                        <outlet property="loadingIndicator" destination="ZkC-eX-G1A" id="5Rw-UF-n1A"/>
+                        <outlet property="photosCollectionView" destination="tuS-Uv-jPb" id="aJg-Si-BcB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpn-fd-scj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

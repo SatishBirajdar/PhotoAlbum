@@ -12,11 +12,10 @@ class AlbumCollectionViewModel {
     var photoAlbumService: PhotoAlbumServiceClient
     
     var mon: NWPathMonitor = NWPathMonitor()
-    var queue = DispatchQueue(label: "Monitor")
+    var queue = DispatchQueue(label: "NetworkMonitor")
     
     var groupByUniqueAlbumId : [Int:[PhotoAlbum]] = [:]
     var uniqueKeys : [Int] = []
-    
     
     var isLoading: Bool = false {
         didSet {
@@ -31,7 +30,7 @@ class AlbumCollectionViewModel {
         }
     }
     
-    lazy var photoAlbums: PhotoAlbums = []
+    lazy var albums: PhotoAlbums = []
     
     // MARK: - Closures for callback, since we are not using the ViewModel to the View.
     var showAlertClosure: (() -> ())?
@@ -65,14 +64,12 @@ extension AlbumCollectionViewModel {
             self.isLoading = true
             checkForInternet()
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
-                self.photoAlbums = model
-                self.groupByUniqueAlbumId = self.photoAlbums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
+                self.albums = model
+                self.groupByUniqueAlbumId = self.albums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
                     var res = res
                     res[album.albumID] = (res[album.albumID] ?? []) + [album]
                     return res
                 }
-                
-                print(self.groupByUniqueAlbumId)
                 
                 for (key, _) in self.groupByUniqueAlbumId {
                     self.uniqueKeys.append(key)

@@ -15,7 +15,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     let reuseIdentifier = "PhotoAlbumCellIdentifer";
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var albumCollectionView: UICollectionView!
     @IBOutlet var errorView: ErrorView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
@@ -110,12 +110,11 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         vm.didFinishFetch = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                self.collectionView.reloadData()
+                self.albumCollectionView.reloadData()
             }
         }
         
         vm.getPhotoAlbums(onSuccess: { (model) in
-            print(model)
         }, onError: {(model) in})
     }
 }

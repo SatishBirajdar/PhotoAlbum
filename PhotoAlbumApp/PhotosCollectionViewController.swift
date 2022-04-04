@@ -11,12 +11,9 @@ import Kingfisher
 
 class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
-    
     let reuseIdentifier = "PhotoAlbumCellIdentifer";
     
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var photosCollectionView: UICollectionView!
     
     var tle: String = ""
     var photos: [PhotoAlbum] = []
@@ -31,9 +28,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "Album \(String(describing: tle))"
-        loadingIndicator.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
