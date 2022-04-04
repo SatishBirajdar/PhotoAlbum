@@ -13,7 +13,6 @@
 		E3C0230327F83835008CBCFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C0230127F83835008CBCFA /* Main.storyboard */; };
 		E3C0230527F83838008CBCFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C0230427F83838008CBCFA /* Assets.xcassets */; };
 		E3C0230827F83838008CBCFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C0230627F83838008CBCFA /* LaunchScreen.storyboard */; };
-		E3C0231327F83839008CBCFA /* PhotoAlbumAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0231227F83839008CBCFA /* PhotoAlbumAppTests.swift */; };
 		E3C0231D27F83839008CBCFA /* PhotoAlbumAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0231C27F83839008CBCFA /* PhotoAlbumAppUITests.swift */; };
 		E3C0231F27F83839008CBCFA /* PhotoAlbumAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0231E27F83839008CBCFA /* PhotoAlbumAppUITestsLaunchTests.swift */; };
 		E3C0232C27F83A19008CBCFA /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0232B27F83A19008CBCFA /* PhotoAlbum.swift */; };
@@ -38,6 +37,7 @@
 		E3C0234E27FB073B008CBCFA /* PhotoAlbumServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234D27FB073B008CBCFA /* PhotoAlbumServiceMock.swift */; };
 		E3C0234F27FB073B008CBCFA /* PhotoAlbumServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234D27FB073B008CBCFA /* PhotoAlbumServiceMock.swift */; };
 		E3C0235127FB086A008CBCFA /* AlbumCollectionViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0235027FB086A008CBCFA /* AlbumCollectionViewModelTest.swift */; };
+		E3C0235327FB73FD008CBCFA /* PhotoAlbumErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0235227FB73FD008CBCFA /* PhotoAlbumErrorText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 		E3C0230727F83838008CBCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3C0230927F83838008CBCFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C0230E27F83839008CBCFA /* PhotoAlbumAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoAlbumAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C0231227F83839008CBCFA /* PhotoAlbumAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAppTests.swift; sourceTree = "<group>"; };
 		E3C0231827F83839008CBCFA /* PhotoAlbumAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoAlbumAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C0231C27F83839008CBCFA /* PhotoAlbumAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAppUITests.swift; sourceTree = "<group>"; };
 		E3C0231E27F83839008CBCFA /* PhotoAlbumAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		E3C0234627FAF82A008CBCFA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E3C0234D27FB073B008CBCFA /* PhotoAlbumServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumServiceMock.swift; sourceTree = "<group>"; };
 		E3C0235027FB086A008CBCFA /* AlbumCollectionViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewModelTest.swift; sourceTree = "<group>"; };
+		E3C0235227FB73FD008CBCFA /* PhotoAlbumErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumErrorText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,6 @@
 		E3C0231127F83839008CBCFA /* PhotoAlbumAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				E3C0231227F83839008CBCFA /* PhotoAlbumAppTests.swift */,
 				E3C0234D27FB073B008CBCFA /* PhotoAlbumServiceMock.swift */,
 				E3C0235027FB086A008CBCFA /* AlbumCollectionViewModelTest.swift */,
 			);
@@ -200,6 +199,7 @@
 				E3C0233427F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift */,
 				E3C0234627FAF82A008CBCFA /* ErrorView.swift */,
 				E3C0233727F9F4A9008CBCFA /* Extensions.swift */,
+				E3C0235227FB73FD008CBCFA /* PhotoAlbumErrorText.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -354,6 +354,7 @@
 				E3C0233E27FA2B40008CBCFA /* PhotosCollectionViewController.swift in Sources */,
 				E3C0233227F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */,
 				E3C0233527F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */,
+				E3C0235327FB73FD008CBCFA /* PhotoAlbumErrorText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +364,6 @@
 			files = (
 				E3C0234527FAF327008CBCFA /* AlbumCollectionViewModel.swift in Sources */,
 				E3C0234F27FB073B008CBCFA /* PhotoAlbumServiceMock.swift in Sources */,
-				E3C0231327F83839008CBCFA /* PhotoAlbumAppTests.swift in Sources */,
 				E3C0233927F9F4A9008CBCFA /* Extensions.swift in Sources */,
 				E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */,
 				E3C0233F27FA2B40008CBCFA /* PhotosCollectionViewController.swift in Sources */,

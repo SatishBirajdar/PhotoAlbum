@@ -10,8 +10,6 @@ import Network
 
 class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
-    
     let reuseIdentifier = "PhotoAlbumCellIdentifer";
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
@@ -44,11 +42,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //UICollectionViewDatasource methods
