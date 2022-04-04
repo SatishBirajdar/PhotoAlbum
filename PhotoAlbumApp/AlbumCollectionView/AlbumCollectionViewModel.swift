@@ -11,7 +11,7 @@ import Network
 class AlbumCollectionViewModel {
     var photoAlbumService: PhotoAlbumServiceClient
     
-    var mon: NWPathMonitor = NWPathMonitor()
+    var monitor: NWPathMonitor = NWPathMonitor()
     var queue = DispatchQueue(label: "NetworkMonitor")
     
     var groupByUniqueAlbumId : [Int:[PhotoAlbum]] = [:]
@@ -44,7 +44,7 @@ class AlbumCollectionViewModel {
 
 extension AlbumCollectionViewModel {
     func checkForInternet(){
-        mon.pathUpdateHandler = {
+        monitor.pathUpdateHandler = {
             network in
             if network.status == .satisfied {
                 DispatchQueue.main.async {
@@ -57,7 +57,7 @@ extension AlbumCollectionViewModel {
                 }
             }
         }
-        mon.start(queue: queue)
+        monitor.start(queue: queue)
     }
     
     func getPhotoAlbums(onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : PhotoAlbumError) -> Void){
