@@ -41,25 +41,14 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
-    //UICollectionViewDelegateFlowLayout methods
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
-//     {
-//         return 4;
-//     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
-//     {
-//         return 1;
-//     }
-     
-     //UICollectionViewDatasource methods
-     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-         return 1
-     }
+    //UICollectionViewDatasource methods
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
      
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.uniqueKeys.count
-     }
+    }
      
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
@@ -72,15 +61,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         
         return cell
     }
-    
-    
-//    func collectionView(_ collectionView1: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
-//        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
-//        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
-//        return CGSize(width: size, height: size)
-//    }
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
              //Do your logic here
@@ -183,15 +163,6 @@ class AlbumCollectionViewModel {
     }
     
     lazy var photoAlbums: PhotoAlbums = []
-    
-//    private(set) var photoAlbums: PhotoAlbums? {
-//        get {
-//            digitalRunsheetService.latestRunSheetResponseModel
-//        }
-//        set {
-//            digitalRunsheetService.latestRunSheetResponseModel = newValue
-//        }
-//    }
     
     // MARK: - Closures for callback, since we are not using the ViewModel to the View.
     var showAlertClosure: (() -> ())?
