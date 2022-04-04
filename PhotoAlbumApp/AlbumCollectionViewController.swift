@@ -9,8 +9,6 @@ import UIKit
 import Network
 
 class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
-    // Satish also implement Network Monitor for No Internet
     
     // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
     
@@ -21,9 +19,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet var errorView: ErrorView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
-    
-//    var mon: NWPathMonitor = NWPathMonitor()
-//    var queue = DispatchQueue(label: "Monitor")
     
     let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -42,9 +37,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-//        resetErrorView()
-//        self.attemptToFetchViewData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,47 +64,17 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
         
         let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
-        
         guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
-
         cell.configure(urlString: firstPhotoOfAlbum.thumbnailURL, name: "Album \(String(self.vm.uniqueKeys[indexPath.row]))")
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-             //Do your logic here
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
         vc?.tle = String(self.vm.uniqueKeys[indexPath.row])
         vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]] ?? []
-        
-        print("Satish clicked \(self.vm.uniqueKeys[indexPath.row])")
-        
         self.navigationController?.pushViewController(vc!, animated: true)
-    }
-    
-    
-    func showAlert( _ title : String, _ message : String) {
-        
-//        var message = message
-        
-//        if message.isEmpty {
-//            if(!ACVHelper.isInternetAvailable()) {
-//                message = "Please connect to the internet!"
-//            }
-//        }
-        
-        if !message.isEmpty {
-            // create the alert
-            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-
-            // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-        }
     }
     
     func startLoadingSpinner() {
@@ -137,9 +99,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         
         vm.showAlertClosure = { [weak self] in
             if let error = self?.vm.error {
-//                print("Error: \(error.message)")
                 DispatchQueue.main.async {
-//                    self?.showAlert(error.title, error.message)
                     self?.errorView.isHidden = false
                     self?.errorView.titleLabel.text = error.title
                     self?.errorView.messageLabel.text = error.message

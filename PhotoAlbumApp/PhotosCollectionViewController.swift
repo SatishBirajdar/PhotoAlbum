@@ -11,8 +11,6 @@ import Kingfisher
 
 class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    // Satish also implement Network Monitor for No Internet
-    
     // Check this for fetch pic for Collection View (https://www.raywenderlich.com/18895088-uicollectionview-tutorial-getting-started)
     
     let reuseIdentifier = "PhotoAlbumCellIdentifer";

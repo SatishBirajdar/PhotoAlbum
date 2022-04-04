@@ -13,24 +13,15 @@ protocol PhotoAlbumServiceClient {
 
 final class PhotoAlbumService {
     static let shared = PhotoAlbumService()
-//    var latestRunSheetResponseModel: DigitalRunSheetModel?
-    
-    // Injectable properties
     lazy var api: PhotoAlbumAPI = PhotoAlbumAPI.shared
 }
 
-
 extension PhotoAlbumService: PhotoAlbumServiceClient {
     public func getPhotoAlbums(onSuccess: @escaping (PhotoAlbums) -> Void, onError : @escaping (PhotoAlbumError) -> Void) {
-        
         api.Get(path: "photos", params: [:], onSuccess: { (model) in
-//            self.modelUpdater.digitalRunSheetModel = model
             onSuccess(model)
         }) { (model) in
             onError(model)
         }
     }
 }
-
-
-
