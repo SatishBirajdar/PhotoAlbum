@@ -64,7 +64,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         if let url = url {
             cell.thumnailImageView.kf.setImage(with: url)
         }
-        cell.albumIdLabel.text = String(self.vm.uniqueKeys[indexPath.row])
+        cell.albumIdLabel.text = "Album \(String(self.vm.uniqueKeys[indexPath.row]))"
         
         return cell
     }

@@ -9,7 +9,9 @@
 import UIKit
 import Kingfisher
 
-class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+
+class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     // Satish also implement Network Monitor for No Internet
     
@@ -24,6 +26,14 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     var tle: String = ""
     var photos: [PhotoAlbum] = []
+    
+    let flowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        return layout
+    }()
     
 //    lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
 //    lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
@@ -75,7 +85,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         if let url = url {
             cell.thumnailImageView.kf.setImage(with: url)
         }
-        cell.albumIdLabel.text = String(photos[indexPath.row].id)
+        cell.albumIdLabel.text = "Track \(String(photos[indexPath.row].id))"
         
         return cell
     }
@@ -91,12 +101,12 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
 //        return CGSize(width: size, height: size)
 //    }
     
-    func collectionView(_ collectionView1: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
-        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
-        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
-        return CGSize(width: size, height: size)
-    }
+//    func collectionView(_ collectionView1: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+//        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+//        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
+//        return CGSize(width: size, height: size)
+//    }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -108,6 +118,20 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
 
     }
     
+    
         
 }
 
+extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
+
+    // MARK: - UICollectionViewDelegateFlowLayout
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width
+        let numberOfItemsPerRow: CGFloat = 3
+        let spacing: CGFloat = flowLayout.minimumInteritemSpacing
+        let availableWidth = width - spacing * (numberOfItemsPerRow + 1)
+        let itemDimension = floor(availableWidth / numberOfItemsPerRow)
+        return CGSize(width: itemDimension, height: itemDimension)
+    }
+}
