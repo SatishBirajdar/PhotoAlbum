@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Kingfisher
+import Network
 
 class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -20,6 +20,9 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet var collectionView: UICollectionView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
+    
+//    var mon: NWPathMonitor = NWPathMonitor()
+//    var queue = DispatchQueue(label: "Monitor")
     
     let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +38,27 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         
         self.attemptToFetchViewData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        mon.pathUpdateHandler = {
+//            p in
+//            if p.status == .satisfied {
+//                DispatchQueue.main.async {
+//                   debugPrint("We are connected to Internet")
+//                }
+//            } else {
+//                DispatchQueue.main.async {
+//                    debugPrint("We are not connected to Internet")
+//                    self.showAlert("No Internet Connection", "Please check your internet and try again.")
+//                }
+//            }
+//        }
+//        mon.start(queue: queue)
+    }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,7 +114,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         
         if !message.isEmpty {
             // create the alert
-            let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
 
             // add an action (button)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -124,7 +148,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
             if let error = self?.vm.error {
 //                print("Error: \(error.message)")
                 DispatchQueue.main.async {
-                    self?.showAlert("Title", error.localizedDescription)
+                    self?.showAlert(error.title, error.message)
                 }
             }
         }
@@ -141,69 +165,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         }, onError: {(model) in})
     }
 }
-
-class AlbumCollectionViewModel {
-    var photoAlbumService: PhotoAlbumServiceClient
-    
-    var groupByUniqueAlbumId : [Int:[PhotoAlbum]] = [:]
-    var uniqueKeys : [Int] = []
-    
-    
-    var isLoading: Bool = false {
-        didSet {
-            self.updateLoadingStatus?()
-        }
-    }
-    
-    var error : NSError? {
-        didSet {
-            self.showAlertClosure?()
-            self.isLoading = false
-        }
-    }
-    
-    lazy var photoAlbums: PhotoAlbums = []
-    
-    // MARK: - Closures for callback, since we are not using the ViewModel to the View.
-    var showAlertClosure: (() -> ())?
-    var updateLoadingStatus: (() -> ())?
-    var didFinishFetch: (() -> ())?
-    
-    init(photoAlbumService: PhotoAlbumServiceClient = PhotoAlbumService.shared){
-        self.photoAlbumService = photoAlbumService
-    }
-}
-
-extension AlbumCollectionViewModel {
-    func getPhotoAlbums(onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : NSError) -> Void){
-//        if ACVHelper.isInternetAvailable() {
-            self.isLoading = true
-            self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
-                self.photoAlbums = model
-                print(model)
-                
-                self.groupByUniqueAlbumId = self.photoAlbums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
-                    var res = res
-                    res[album.albumID] = (res[album.albumID] ?? []) + [album]
-                    return res
-                }
-                
-                print(self.groupByUniqueAlbumId)
-                
-                for (key, value) in self.groupByUniqueAlbumId {
-                    self.uniqueKeys.append(key)
-                }
-                self.uniqueKeys.sort()
-                
-                self.didFinishFetch?()
-                self.isLoading = false
-                onSuccess(model)
-            }, onError: {(model) in
-            onError(model)
-        })
-    }
-}
-
 
 extension AlbumCollectionViewController: UICollectionViewDelegateFlowLayout {
 

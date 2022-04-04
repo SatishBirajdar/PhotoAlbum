@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PhotoAlbumServiceClient {
-    func getPhotoAlbums(onSuccess: @escaping (PhotoAlbums) -> Void, onError : @escaping (NSError) -> Void)
+    func getPhotoAlbums(onSuccess: @escaping (PhotoAlbums) -> Void, onError : @escaping (PhotoAlbumError) -> Void)
 }
 
 final class PhotoAlbumService {
@@ -21,7 +21,7 @@ final class PhotoAlbumService {
 
 
 extension PhotoAlbumService: PhotoAlbumServiceClient {
-    public func getPhotoAlbums(onSuccess: @escaping (PhotoAlbums) -> Void, onError : @escaping (NSError) -> Void) {
+    public func getPhotoAlbums(onSuccess: @escaping (PhotoAlbums) -> Void, onError : @escaping (PhotoAlbumError) -> Void) {
         
         api.Get(path: "photos", params: [:], onSuccess: { (model) in
 //            self.modelUpdater.digitalRunSheetModel = model

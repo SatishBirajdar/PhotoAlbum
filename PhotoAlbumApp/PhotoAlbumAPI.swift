@@ -17,7 +17,7 @@ class PhotoAlbumAPI {
     
     private init() {}
     
-    public func Get(path: String, params: Dictionary<String,Any> = [:], onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : NSError) -> Void)
+    public func Get(path: String, params: Dictionary<String,Any> = [:], onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : PhotoAlbumError) -> Void)
     {
         var query : String = baseURL.appending(path)
 //        query.append(self.paramToQueryString(params))
@@ -35,13 +35,13 @@ class PhotoAlbumAPI {
         }
     }
     
-    private func handleResponse(route: String, data: Data?, response: URLResponse?, error : Error?, onSuccess : (_ : PhotoAlbums) -> Void, onError : (_ : NSError) -> Void) -> Void {
+    private func handleResponse(route: String, data: Data?, response: URLResponse?, error : Error?, onSuccess : (_ : PhotoAlbums) -> Void, onError : (_ : PhotoAlbumError) -> Void) -> Void {
         if let error = error {
-            onError(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Object does not exist"]))
+            onError(PhotoAlbumError(title: "", message: "Object does not exist"))
         }
 
         guard let data = data else {
-            return onError(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Object does not exist"]))
+            return onError(PhotoAlbumError(title: "", message: "Object does not exist"))
         }
 
         do {
@@ -52,7 +52,7 @@ class PhotoAlbumAPI {
             onSuccess(responseModel)
         } catch let parsingError {
             print("Failed to convert data\(parsingError)")
-            onError(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Object does not exist"]))
+            onError(PhotoAlbumError(title: "", message: "Object does not exist"))
         }
     }
     
