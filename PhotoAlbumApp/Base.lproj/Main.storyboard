@@ -93,13 +93,13 @@
                                 <rect key="frame" x="20" y="108" width="374" height="754"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkQ-RW-qwF">
-                                        <rect key="frame" x="10" y="307.5" width="354" height="29"/>
+                                        <rect key="frame" x="137.5" y="307.5" width="99.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fk-14-MqH">
-                                        <rect key="frame" x="10" y="366.5" width="354" height="21"/>
+                                        <rect key="frame" x="129" y="366.5" width="116.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -107,14 +107,10 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="5Fk-14-MqH" firstAttribute="leading" secondItem="QpB-Vu-Uk9" secondAttribute="leading" constant="10" id="3EW-Uo-MEL"/>
                                     <constraint firstItem="gkQ-RW-qwF" firstAttribute="centerX" secondItem="QpB-Vu-Uk9" secondAttribute="centerX" id="4rT-fd-Ga4"/>
-                                    <constraint firstItem="gkQ-RW-qwF" firstAttribute="leading" secondItem="QpB-Vu-Uk9" secondAttribute="leading" constant="10" id="8gl-nz-ydb"/>
                                     <constraint firstItem="5Fk-14-MqH" firstAttribute="centerX" secondItem="QpB-Vu-Uk9" secondAttribute="centerX" id="BJ0-pz-iUt"/>
-                                    <constraint firstAttribute="trailing" secondItem="gkQ-RW-qwF" secondAttribute="trailing" constant="10" id="TcL-tt-6P9"/>
                                     <constraint firstItem="5Fk-14-MqH" firstAttribute="top" secondItem="gkQ-RW-qwF" secondAttribute="bottom" constant="30" id="cgD-uC-ZNl"/>
                                     <constraint firstItem="5Fk-14-MqH" firstAttribute="centerY" secondItem="QpB-Vu-Uk9" secondAttribute="centerY" id="nGN-QS-kbr"/>
-                                    <constraint firstAttribute="trailing" secondItem="5Fk-14-MqH" secondAttribute="trailing" constant="10" id="s0u-zc-auB"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="messageLabel" destination="5Fk-14-MqH" id="qiL-fP-PkV"/>

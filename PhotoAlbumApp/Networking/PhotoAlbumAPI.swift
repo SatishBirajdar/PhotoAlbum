@@ -19,16 +19,11 @@ class PhotoAlbumAPI {
     
     public func Get(path: String, params: Dictionary<String,Any> = [:], onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : PhotoAlbumError) -> Void)
     {
-        var query : String = baseURL.appending(path)
-//        query.append(self.paramToQueryString(params))
-
+        let query : String = baseURL.appending(path)
         if let url = URL(string: query) {
             var request = URLRequest(url: url)
-//            request.setValue(apiClientHelper.authorizationHeader, forHTTPHeaderField: "Authorization")
             request.timeoutInterval = TimeInterval(120)
-
-//            Logger.verbose(request.curl())
-
+            
             urlSession.dataTask(with: request) { (data, response, error) in
                 self.handleResponse(route: path, data: data, response: response, error: error, onSuccess: onSuccess, onError: onError)
                 }.resume()
@@ -36,12 +31,12 @@ class PhotoAlbumAPI {
     }
     
     private func handleResponse(route: String, data: Data?, response: URLResponse?, error : Error?, onSuccess : (_ : PhotoAlbums) -> Void, onError : (_ : PhotoAlbumError) -> Void) -> Void {
-        if let error = error {
-            onError(PhotoAlbumError(title: "", message: "Object does not exist"))
+        if let _ = error {
+            onError(PhotoAlbumError(title: PhotoAlbumErrorText.serverSideFailure.typeTitleAndSubtitle.title, message: PhotoAlbumErrorText.serverSideFailure.typeTitleAndSubtitle.subtitle))
         }
 
         guard let data = data else {
-            return onError(PhotoAlbumError(title: "", message: "Object does not exist"))
+            return onError(PhotoAlbumError(title: PhotoAlbumErrorText.objectNotFound.typeTitleAndSubtitle.title, message: PhotoAlbumErrorText.objectNotFound.typeTitleAndSubtitle.subtitle))
         }
 
         do {
@@ -51,8 +46,8 @@ class PhotoAlbumAPI {
             
             onSuccess(responseModel)
         } catch let parsingError {
-            print("Failed to convert data\(parsingError)")
-            onError(PhotoAlbumError(title: "", message: "Object does not exist"))
+            debugPrint("Failed to convert data\(parsingError)")
+            onError(PhotoAlbumError(title: PhotoAlbumErrorText.objectNotFound.typeTitleAndSubtitle.title, message: PhotoAlbumErrorText.objectNotFound.typeTitleAndSubtitle.subtitle))
         }
     }
     
