@@ -22,7 +22,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var collectionView: UICollectionView!
     
-    var tle: String? = ""
+    var tle: String = ""
     var photos: [PhotoAlbum] = []
     
 //    lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
@@ -34,7 +34,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         
 //        self.attemptToFetchViewData()
         
-        self.title = tle
+        self.title = "Album \(String(describing: tle))"
         
         loadingIndicator.isHidden = true
     }

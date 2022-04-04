@@ -94,6 +94,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
         
         
+        vc?.tle = String(self.vm.uniqueKeys[indexPath.row])
         vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]] ?? []
         
         print("Satish clicked \(self.vm.uniqueKeys[indexPath.row])")
