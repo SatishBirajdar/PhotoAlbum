@@ -76,17 +76,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
      
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
-        
-//        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
-//
-//        guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
-        
-        let url = URL(string: photos[indexPath.row].thumbnailURL)
-        if let url = url {
-            cell.thumnailImageView.kf.setImage(with: url)
-        }
-        cell.albumIdLabel.text = "Track \(String(photos[indexPath.row].id))"
-        
+        cell.configure(urlString: photos[indexPath.row].thumbnailURL, name: "Track \(String(photos[indexPath.row].id))")
         return cell
     }
     
@@ -117,9 +107,6 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         print("Satish clicked \(self.photos[indexPath.row])")
 
     }
-    
-    
-        
 }
 
 extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {

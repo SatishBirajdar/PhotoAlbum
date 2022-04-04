@@ -67,14 +67,8 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
         
         guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
-        
-        let url = URL(string: firstPhotoOfAlbum.thumbnailURL)
-        if let url = url {
-            cell.thumnailImageView.kf.setImage(with: url)
-        }
-        cell.albumIdLabel.text = "Album \(String(self.vm.uniqueKeys[indexPath.row]))"
-        
-        cell.layoutIfNeeded()
+
+        cell.configure(urlString: firstPhotoOfAlbum.thumbnailURL, name: "Album \(String(self.vm.uniqueKeys[indexPath.row]))")
         
         return cell
     }
