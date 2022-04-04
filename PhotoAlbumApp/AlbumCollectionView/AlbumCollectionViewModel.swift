@@ -15,7 +15,7 @@ class AlbumCollectionViewModel {
     var queue = DispatchQueue(label: "NetworkMonitor")
     
     var groupByUniqueAlbumId : [Int:[PhotoAlbum]] = [:]
-    var uniqueKeys : [Int] = []
+    var albumIds : [Int] = []
     
     var isLoading: Bool = false {
         didSet {
@@ -65,22 +65,27 @@ extension AlbumCollectionViewModel {
             checkForInternet()
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
                 self.albums = model
-                self.groupByUniqueAlbumId = self.albums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
-                    var res = res
-                    res[album.albumID] = (res[album.albumID] ?? []) + [album]
-                    return res
-                }
-                
-                for (key, _) in self.groupByUniqueAlbumId {
-                    self.uniqueKeys.append(key)
-                }
-                self.uniqueKeys.sort()
-                
+                self.albumIds = self.groupByAlbumId()
                 self.didFinishFetch?()
                 self.isLoading = false
                 onSuccess(model)
             }, onError: {(model) in
             onError(model)
         })
+    }
+    
+    func groupByAlbumId() -> [Int] {
+        var tempAlbumIds: [Int] = []
+        self.groupByUniqueAlbumId = self.albums.reduce([Int:[PhotoAlbum]]()) { (res, album) -> [Int:[PhotoAlbum]] in
+            var res = res
+            res[album.albumID] = (res[album.albumID] ?? []) + [album]
+            return res
+        }
+        
+        for (key, _) in self.groupByUniqueAlbumId {
+            tempAlbumIds.append(key)
+        }
+        
+        return tempAlbumIds.sorted()
     }
 }

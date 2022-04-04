@@ -11,30 +11,24 @@ import Kingfisher
 
 class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    let reuseIdentifier = "PhotoAlbumCellIdentifer";
+     let reuseIdentifier = "PhotoAlbumCellIdentifer";
+     @IBOutlet var photosCollectionView: UICollectionView!
     
-    @IBOutlet var photosCollectionView: UICollectionView!
+     var tle: String = ""
+     var photos: [PhotoAlbum] = []
     
-    var tle: String = ""
-    var photos: [PhotoAlbum] = []
-    
-    let flowLayout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 5
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        return layout
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Album \(String(describing: tle))"
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+     let flowLayout: UICollectionViewFlowLayout = {
+         let layout = UICollectionViewFlowLayout()
+         layout.minimumInteritemSpacing = 5
+         layout.minimumLineSpacing = 5
+         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+         return layout
+     }()
+     
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         self.title = "Album \(String(describing: tle))"
+     }
     
      //UICollectionViewDatasource methods
      func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

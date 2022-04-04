@@ -57,23 +57,23 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     }
      
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vm.uniqueKeys.count
+        return vm.albumIds.count
     }
      
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
         
-        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]]
+        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.albumIds[indexPath.row]]
         guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
-        cell.configure(urlString: firstPhotoOfAlbum.thumbnailURL, name: "Album \(String(self.vm.uniqueKeys[indexPath.row]))")
+        cell.configure(urlString: firstPhotoOfAlbum.thumbnailURL, name: "Album \(String(self.vm.albumIds[indexPath.row]))")
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
-        vc?.tle = String(self.vm.uniqueKeys[indexPath.row])
-        vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]] ?? []
+        vc?.tle = String(self.vm.albumIds[indexPath.row])
+        vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.albumIds[indexPath.row]] ?? []
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
