@@ -18,6 +18,7 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var errorView: ErrorView!
     lazy var photoAlbumService: PhotoAlbumService = PhotoAlbumService.shared
     lazy var vm = AlbumCollectionViewModel(photoAlbumService: photoAlbumService)
     
@@ -32,33 +33,26 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         return layout
     }()
     
+    func resetErrorView(){
+        self.errorView.isHidden = true
+        self.errorView.titleLabel.text = ""
+        self.errorView.messageLabel.text = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+//        resetErrorView()
+//        self.attemptToFetchViewData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        resetErrorView()
         self.attemptToFetchViewData()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        mon.pathUpdateHandler = {
-//            p in
-//            if p.status == .satisfied {
-//                DispatchQueue.main.async {
-//                   debugPrint("We are connected to Internet")
-//                }
-//            } else {
-//                DispatchQueue.main.async {
-//                    debugPrint("We are not connected to Internet")
-//                    self.showAlert("No Internet Connection", "Please check your internet and try again.")
-//                }
-//            }
-//        }
-//        mon.start(queue: queue)
-    }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,15 +84,12 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
              //Do your logic here
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
-        
-        
         vc?.tle = String(self.vm.uniqueKeys[indexPath.row])
         vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.uniqueKeys[indexPath.row]] ?? []
         
         print("Satish clicked \(self.vm.uniqueKeys[indexPath.row])")
         
         self.navigationController?.pushViewController(vc!, animated: true)
-
     }
     
     
@@ -148,7 +139,10 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
             if let error = self?.vm.error {
 //                print("Error: \(error.message)")
                 DispatchQueue.main.async {
-                    self?.showAlert(error.title, error.message)
+//                    self?.showAlert(error.title, error.message)
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = error.title
+                    self?.errorView.messageLabel.text = error.message
                 }
             }
         }

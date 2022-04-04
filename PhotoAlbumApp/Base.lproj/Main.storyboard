@@ -116,20 +116,57 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" systemColor="systemPinkColor"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-Vu-Uk9" userLabel="ErrorView" customClass="ErrorView" customModule="PhotoAlbumApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="108" width="374" height="754"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkQ-RW-qwF">
+                                        <rect key="frame" x="10" y="307.5" width="354" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fk-14-MqH">
+                                        <rect key="frame" x="10" y="366.5" width="354" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="5Fk-14-MqH" firstAttribute="leading" secondItem="QpB-Vu-Uk9" secondAttribute="leading" constant="10" id="3EW-Uo-MEL"/>
+                                    <constraint firstItem="gkQ-RW-qwF" firstAttribute="centerX" secondItem="QpB-Vu-Uk9" secondAttribute="centerX" id="4rT-fd-Ga4"/>
+                                    <constraint firstItem="gkQ-RW-qwF" firstAttribute="leading" secondItem="QpB-Vu-Uk9" secondAttribute="leading" constant="10" id="8gl-nz-ydb"/>
+                                    <constraint firstItem="5Fk-14-MqH" firstAttribute="centerX" secondItem="QpB-Vu-Uk9" secondAttribute="centerX" id="BJ0-pz-iUt"/>
+                                    <constraint firstAttribute="trailing" secondItem="gkQ-RW-qwF" secondAttribute="trailing" constant="10" id="TcL-tt-6P9"/>
+                                    <constraint firstItem="5Fk-14-MqH" firstAttribute="top" secondItem="gkQ-RW-qwF" secondAttribute="bottom" constant="30" id="cgD-uC-ZNl"/>
+                                    <constraint firstItem="5Fk-14-MqH" firstAttribute="centerY" secondItem="QpB-Vu-Uk9" secondAttribute="centerY" id="nGN-QS-kbr"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Fk-14-MqH" secondAttribute="trailing" constant="10" id="s0u-zc-auB"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="messageLabel" destination="5Fk-14-MqH" id="qiL-fP-PkV"/>
+                                    <outlet property="titleLabel" destination="gkQ-RW-qwF" id="sDU-L0-7ou"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ayI-RW-mCX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ayI-RW-mCX" firstAttribute="bottom" secondItem="scV-bf-YPU" secondAttribute="bottom" id="1xt-eg-BqI"/>
                             <constraint firstItem="scV-bf-YPU" firstAttribute="leading" secondItem="ayI-RW-mCX" secondAttribute="leading" constant="20" id="5Vf-S9-xVh"/>
+                            <constraint firstItem="QpB-Vu-Uk9" firstAttribute="leading" secondItem="scV-bf-YPU" secondAttribute="leading" id="9vu-gV-mED"/>
                             <constraint firstItem="ayI-RW-mCX" firstAttribute="trailing" secondItem="scV-bf-YPU" secondAttribute="trailing" constant="20" id="XVb-Th-eyM"/>
+                            <constraint firstItem="QpB-Vu-Uk9" firstAttribute="top" secondItem="scV-bf-YPU" secondAttribute="top" id="aUX-aW-4pq"/>
                             <constraint firstItem="iuv-v1-sxh" firstAttribute="centerX" secondItem="scV-bf-YPU" secondAttribute="centerX" id="r4U-bt-hCF"/>
+                            <constraint firstItem="QpB-Vu-Uk9" firstAttribute="trailing" secondItem="scV-bf-YPU" secondAttribute="trailing" id="vRk-mx-EyJ"/>
+                            <constraint firstItem="QpB-Vu-Uk9" firstAttribute="bottom" secondItem="scV-bf-YPU" secondAttribute="bottom" id="wxC-w0-esh"/>
                             <constraint firstItem="scV-bf-YPU" firstAttribute="top" secondItem="ayI-RW-mCX" secondAttribute="top" constant="20" id="ziT-CH-idH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Album" id="byJ-Er-499"/>
                     <connections>
                         <outlet property="collectionView" destination="scV-bf-YPU" id="9C2-7Z-AGS"/>
+                        <outlet property="errorView" destination="QpB-Vu-Uk9" id="QJ0-36-0BZ"/>
                         <outlet property="loadingIndicator" destination="iuv-v1-sxh" id="DoA-VD-SE5"/>
                         <segue destination="LBr-S5-Izz" kind="show" id="bbc-kp-b1n"/>
                     </connections>
@@ -218,14 +255,50 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" systemColor="systemPinkColor"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2av-qg-LgF" userLabel="ErrorView" customClass="ErrorView" customModule="PhotoAlbumApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="108" width="374" height="754"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAB-3Q-Tb8">
+                                        <rect key="frame" x="10" y="307.5" width="354" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9M-H3-ufU">
+                                        <rect key="frame" x="10" y="366.5" width="354" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="b9M-H3-ufU" secondAttribute="trailing" constant="10" id="9T2-wh-EKo"/>
+                                    <constraint firstItem="b9M-H3-ufU" firstAttribute="centerX" secondItem="2av-qg-LgF" secondAttribute="centerX" id="RjL-Ht-xbj"/>
+                                    <constraint firstItem="b9M-H3-ufU" firstAttribute="centerY" secondItem="2av-qg-LgF" secondAttribute="centerY" id="V58-nN-vFx"/>
+                                    <constraint firstItem="ZAB-3Q-Tb8" firstAttribute="leading" secondItem="2av-qg-LgF" secondAttribute="leading" constant="10" id="VIV-er-CI9"/>
+                                    <constraint firstItem="b9M-H3-ufU" firstAttribute="top" secondItem="ZAB-3Q-Tb8" secondAttribute="bottom" constant="30" id="aW0-FT-dmm"/>
+                                    <constraint firstItem="b9M-H3-ufU" firstAttribute="leading" secondItem="2av-qg-LgF" secondAttribute="leading" constant="10" id="eWA-P5-gQS"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZAB-3Q-Tb8" secondAttribute="trailing" constant="10" id="gyb-1f-85i"/>
+                                    <constraint firstItem="ZAB-3Q-Tb8" firstAttribute="centerX" secondItem="2av-qg-LgF" secondAttribute="centerX" id="rlF-qg-iF3"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="messageLabel" destination="b9M-H3-ufU" id="1sf-i1-jC3"/>
+                                    <outlet property="titleLabel" destination="ZAB-3Q-Tb8" id="LUb-LS-FTm"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MRq-Sp-8Hw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tuS-Uv-jPb" firstAttribute="leading" secondItem="MRq-Sp-8Hw" secondAttribute="leading" constant="20" id="24q-ch-zXP"/>
                             <constraint firstItem="ZkC-eX-G1A" firstAttribute="centerX" secondItem="tuS-Uv-jPb" secondAttribute="centerX" id="6rI-vm-TYF"/>
+                            <constraint firstItem="2av-qg-LgF" firstAttribute="top" secondItem="tuS-Uv-jPb" secondAttribute="top" id="7NI-Wi-ctU"/>
+                            <constraint firstItem="2av-qg-LgF" firstAttribute="leading" secondItem="tuS-Uv-jPb" secondAttribute="leading" id="CYA-8E-lYg"/>
                             <constraint firstItem="MRq-Sp-8Hw" firstAttribute="trailing" secondItem="tuS-Uv-jPb" secondAttribute="trailing" constant="20" id="N7w-Wl-lrd"/>
+                            <constraint firstItem="2av-qg-LgF" firstAttribute="trailing" secondItem="tuS-Uv-jPb" secondAttribute="trailing" id="XTC-Cw-Ykn"/>
                             <constraint firstItem="tuS-Uv-jPb" firstAttribute="top" secondItem="MRq-Sp-8Hw" secondAttribute="top" constant="20" id="ZVo-rq-Sam"/>
+                            <constraint firstItem="2av-qg-LgF" firstAttribute="bottom" secondItem="tuS-Uv-jPb" secondAttribute="bottom" id="vqU-ME-qQ9"/>
                             <constraint firstItem="MRq-Sp-8Hw" firstAttribute="bottom" secondItem="tuS-Uv-jPb" secondAttribute="bottom" id="wnC-es-0J5"/>
                         </constraints>
                     </view>

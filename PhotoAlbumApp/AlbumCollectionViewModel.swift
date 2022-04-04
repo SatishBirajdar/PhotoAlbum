@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Network
 
 class AlbumCollectionViewModel {
     var photoAlbumService: PhotoAlbumServiceClient
@@ -65,6 +66,8 @@ extension AlbumCollectionViewModel {
     func getPhotoAlbums(onSuccess : @escaping (_ : PhotoAlbums) -> Void, onError : @escaping (_ : PhotoAlbumError) -> Void){
 //        if ACVHelper.isInternetAvailable() {
             self.isLoading = true
+        
+            checkForInternet()
             self.photoAlbumService.getPhotoAlbums(onSuccess: { (model) in
                 self.photoAlbums = model
                 print(model)

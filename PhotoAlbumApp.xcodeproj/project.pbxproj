@@ -33,6 +33,8 @@
 		E3C0234227FAF0DF008CBCFA /* PhotoAlbumError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234027FAF0DE008CBCFA /* PhotoAlbumError.swift */; };
 		E3C0234427FAF327008CBCFA /* AlbumCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234327FAF327008CBCFA /* AlbumCollectionViewModel.swift */; };
 		E3C0234527FAF327008CBCFA /* AlbumCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234327FAF327008CBCFA /* AlbumCollectionViewModel.swift */; };
+		E3C0234727FAF82A008CBCFA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234627FAF82A008CBCFA /* ErrorView.swift */; };
+		E3C0234827FAF82A008CBCFA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0234627FAF82A008CBCFA /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,7 @@
 		E3C0233D27FA2B40008CBCFA /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotosCollectionViewController.swift; path = PhotoAlbumApp/PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		E3C0234027FAF0DE008CBCFA /* PhotoAlbumError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumError.swift; sourceTree = "<group>"; };
 		E3C0234327FAF327008CBCFA /* AlbumCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewModel.swift; path = PhotoAlbumApp/AlbumCollectionViewModel.swift; sourceTree = "<group>"; };
+		E3C0234627FAF82A008CBCFA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = PhotoAlbumApp/ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 		E3C022EF27F83835008CBCFA = {
 			isa = PBXGroup;
 			children = (
+				E3C0234627FAF82A008CBCFA /* ErrorView.swift */,
 				E3C0234327FAF327008CBCFA /* AlbumCollectionViewModel.swift */,
 				E3C0233D27FA2B40008CBCFA /* PhotosCollectionViewController.swift */,
 				E3C022FA27F83835008CBCFA /* PhotoAlbumApp */,
@@ -305,6 +309,7 @@
 				E3C0234127FAF0DF008CBCFA /* PhotoAlbumError.swift in Sources */,
 				E3C0233827F9F4A9008CBCFA /* Extensions.swift in Sources */,
 				E3C0232F27F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */,
+				E3C0234727FAF82A008CBCFA /* ErrorView.swift in Sources */,
 				E3C0232C27F83A19008CBCFA /* PhotoAlbum.swift in Sources */,
 				E3C0233E27FA2B40008CBCFA /* PhotosCollectionViewController.swift in Sources */,
 				E3C0233227F8659F008CBCFA /* PhotoAlbumAPI.swift in Sources */,
@@ -321,6 +326,7 @@
 				E3C0233927F9F4A9008CBCFA /* Extensions.swift in Sources */,
 				E3C0233627F9D9E8008CBCFA /* PhotoAlbumCollectionViewCell.swift in Sources */,
 				E3C0233F27FA2B40008CBCFA /* PhotosCollectionViewController.swift in Sources */,
+				E3C0234827FAF82A008CBCFA /* ErrorView.swift in Sources */,
 				E3C0232D27F83A19008CBCFA /* PhotoAlbum.swift in Sources */,
 				E3C0234227FAF0DF008CBCFA /* PhotoAlbumError.swift in Sources */,
 				E3C0233027F83E4F008CBCFA /* PhotoAlbumService.swift in Sources */,
