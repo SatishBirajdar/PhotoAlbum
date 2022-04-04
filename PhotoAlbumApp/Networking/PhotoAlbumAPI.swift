@@ -50,9 +50,7 @@ class PhotoAlbumAPI {
             onError(PhotoAlbumError(title: PhotoAlbumErrorText.objectNotFound.typeTitleAndSubtitle.title, message: PhotoAlbumErrorText.objectNotFound.typeTitleAndSubtitle.subtitle))
         }
     }
-    
 }
-
 
 protocol URLSessionProtocol: AnyObject {
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDataTask
