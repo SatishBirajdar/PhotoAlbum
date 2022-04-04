@@ -8,7 +8,7 @@
 import UIKit
 import Network
 
-class AlbumCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class AlbumCollectionViewController: UIViewController {
     
     let reuseIdentifier = "PhotoAlbumCellIdentifer";
     
@@ -26,12 +26,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         return layout
     }()
     
-    func resetErrorView(){
-        self.errorView.isHidden = true
-        self.errorView.titleLabel.text = ""
-        self.errorView.messageLabel.text = ""
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -42,32 +36,6 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    //UICollectionViewDatasource methods
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vm.albumIds.count
-    }
-     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
-        
-        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.albumIds[indexPath.row]]
-        guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
-        cell.configure(urlString: firstPhotoOfAlbum.thumbnailURL, name: "Album \(String(self.vm.albumIds[indexPath.row]))")
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
-        vc?.tle = String(self.vm.albumIds[indexPath.row])
-        vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.albumIds[indexPath.row]] ?? []
-        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func startLoadingSpinner() {
@@ -110,11 +78,45 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
         vm.getPhotoAlbums(onSuccess: { (model) in
         }, onError: {(model) in})
     }
+    
+    func resetErrorView(){
+        self.errorView.isHidden = true
+        self.errorView.titleLabel.text = ""
+        self.errorView.messageLabel.text = ""
+    }
+    
 }
 
-extension AlbumCollectionViewController: UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+extension AlbumCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return vm.albumIds.count
+    }
+     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
+        
+        let photosOfAlbum = self.vm.groupByUniqueAlbumId[self.vm.albumIds[indexPath.row]]
+        guard let firstPhotoOfAlbum = photosOfAlbum?[0] else { return cell }
+        cell.configure(urlString: firstPhotoOfAlbum.thumbnailURL, name: "Album \(String(self.vm.albumIds[indexPath.row]))")
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "PhotosCollectionViewController") as? PhotosCollectionViewController
+        vc?.tle = String(self.vm.albumIds[indexPath.row])
+        vc?.photos = self.vm.groupByUniqueAlbumId[self.vm.albumIds[indexPath.row]] ?? []
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+}
 
-    // MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
+extension AlbumCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width

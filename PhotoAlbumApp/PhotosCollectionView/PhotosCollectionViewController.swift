@@ -7,9 +7,8 @@
 
 
 import UIKit
-import Kingfisher
 
-class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class PhotosCollectionViewController: UIViewController {
 
      let reuseIdentifier = "PhotoAlbumCellIdentifer";
      @IBOutlet var photosCollectionView: UICollectionView!
@@ -29,26 +28,27 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
          super.viewDidLoad()
          self.title = "Album \(String(describing: tle))"
      }
-    
-     //UICollectionViewDatasource methods
-     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-         return 1
-     }
-     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
-     }
-     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
-        cell.configure(urlString: photos[indexPath.row].thumbnailURL, name: "Track \(String(photos[indexPath.row].id))")
-        return cell
-    }
 }
 
-extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+extension PhotosCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       return photos.count
+    }
+    
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! PhotoAlbumCollectionViewCell
+       cell.configure(urlString: photos[indexPath.row].thumbnailURL, name: "Track \(String(photos[indexPath.row].id))")
+       return cell
+   }
+}
 
-    // MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
+extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
