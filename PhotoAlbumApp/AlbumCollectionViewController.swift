@@ -37,13 +37,13 @@ class AlbumCollectionViewController: UIViewController, UICollectionViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        resetErrorView()
+        self.attemptToFetchViewData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        resetErrorView()
-        self.attemptToFetchViewData()
     }
     
     override func didReceiveMemoryWarning() {
